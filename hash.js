@@ -3,8 +3,8 @@ let bcrypt = require('bcrypt');
 // NOTE : with node >= 12.0, the bcrypt functions return a promise
 // if a callback is not specified. this example supports node < 12.0
 
-// first generate a random salt
-function genSalt(password, rounds) {
+// if node version < 12 (also include a Promise package)
+function genSalt(rounds) {
     return new Promise((resolve, reject) => {
         return bcrypt.genSalt(rounds, function (err, salt) {
             if (err) {
@@ -13,15 +13,19 @@ function genSalt(password, rounds) {
             else {
                 resolve({
                     salt: salt,
-                    password: password
                 });
             }
         });
     });
 }
 
+// if node version >= 12.0
+function genSalt2(rounds) {
+    return bcrypt.genSalt(rounds);
+}
+
 // hash the password with the salt
-function genHash(salt, password) {
+function genHash(salt, password, rounds) {
     return new Promise((resolve, reject) => {
         bcrypt.hash(password, salt, function (err, hash) {
             if (err) {
@@ -38,16 +42,26 @@ function genHash(salt, password) {
     });
 }
 
+function genHash2(password, rounds) {
+    return bcrypt.hash(password, rounds)
+}
+
 function verify(passwd, hash) {
     return new Promise((resolve, reject) => {
-        bcrypt.compare(passwd)
-
+        return bcrypt.compare(passwd, hash, (error, valid) => {
+            if (error) {
+                reject(error)
+            }
+            else {
+                resolve(valid)
+            }
+        })
     });
 }
 
 // ==========================================================================
-function f1(password, rounds) {
-    genSalt(password, rounds)
+function f1(rounds) {
+    genSalt2(rounds)
         .then(result => {
             console.log('salt', result)
         })
@@ -57,7 +71,7 @@ function f1(password, rounds) {
 }
 
 function f2(password, rounds) {
-    genSalt(password, rounds)
+    genSalt(rounds)
         .then(result => {
             console.log('salt', result)
             return genHash(result.salt, password)
@@ -75,12 +89,17 @@ function f2(password, rounds) {
 // lookup user in database and verify the hash
 function f3(password, hash) {
 
-    // verify
-    bcrypt.compare(password, hash)
-        .then((result) => {
+    verify(password, hash)
+        .then(result => {
             console.log(result)
+            if (result) {
+                console.log("valid password!")
+            }
+            else {
+                console.log("invalid password!")
+            }
         })
-        .catch((error) => {
+        .catch(error => {
             console.log(error)
         })
 }
@@ -94,7 +113,7 @@ const passwd_from_ui = "hello"
 // hash = lookupUser("joe")
 const hash_from_db = '$2b$10$lcXuO9M808f1X1OWqJJ7c.rAG4l1kwHohaPEZ6q0N5sNTDfV2VDfG'
 
-f1(passwd_from_ui, rounds)
+// f1(rounds)
 // f2(passwd_from_ui, rounds)
 // f3(passwd_from_ui, hash_from_db)
 
