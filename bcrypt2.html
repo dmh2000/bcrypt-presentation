@@ -1,56 +1,76 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>BCRYPT</title>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-        
-        <style>
-.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
-</style>
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous"
-/>
-<style>
-    li {
-        font-weight: 700;
-    }
-</style>
-        
-        
-    </head>
-    <body class="vscode-light">
-        <h1 id="bcrypt">BCRYPT</h1>
-<ul>
-<li>bcrypt is a password hashing function designed by Niels Provos and David Mazières in 1999</li>
-<li>specifically intended for use in password hashing</li>
-<li><a href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt in Wikipedia</a></li>
-</ul>
-<p><strong>The main characteristic of bcrypt that makes it useful for password hasing is that it can be tuned to be slow</strong></p>
-<p>Bcrypt lets you tune how long it takes to generate the desired hash</p>
-<ul>
-<li>slow generation of the hash can be used to hamper brute force attacks
-<ul>
-<li>like adding a delay between login attempts</li>
-<li>iteration count can be increased as compute power grows over time</li>
-</ul>
-</li>
-<li>It also supports generating a salt to prevent rainbow table attacks
-<ul>
-<li>without a salt, everyone who uses 'passwd' would have the same hash</li>
-</ul>
-</li>
-<li>its proven over 20 years of use</li>
-</ul>
-<p>Most common languages have a port of bcrypt.
-<a href="https://www.npmjs.com/package/bcrypt">NPM module for node.js</a></p>
-<p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
-<p><a href="bcrypt1.html">Back</a></p>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BCRYPT</title>
 
-    </body>
-    </html>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css"
+    />
+
+    <style>
+      .task-list-item {
+        list-style-type: none;
+      }
+      .task-list-item-checkbox {
+        margin-left: -20px;
+        vertical-align: middle;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      li {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body class="vscode-light">
+    <h1 id="bcrypt">BCRYPT</h1>
+    <ul>
+      <li>bcrypt is a password hashing function designed by Niels Provos and David Mazières in 1999</li>
+      <li>specifically intended for use in password hashing</li>
+      <li>its proven over 20 years of use</li>
+      <li>uses <a href="https://en.wikipedia.org/wiki/Blowfish_(cipher)">Blowfish encryption</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt in Wikipedia</a></li>
+    </ul>
+    <p>
+      <strong
+        >The main characteristic of bcrypt that makes it useful for password hashing is that it can be tuned to be slow</strong
+      >
+    </p>
+    <p><strong>Bcrypt lets you tune how long it takes to generate the desired hash</strong></p>
+    <ul>
+      <li>
+        slow generation of the hash can be used to hamper brute force attacks
+        <ul>
+          <li>like adding a delay between login attempts</li>
+          <li>'rounds' argument indicates number of iterations of the hash algorithm</li>
+          <li>time to generate hash doubles for every increment of 'rounds'</li>
+          <li>'rounds' count can be increased as compute power grows over time</li>
+        </ul>
+      </li>
+      <li>
+        bcrypt uses a 30 character salt to prevent rainbow table attacks
+        <ul>
+          <li>without a salt, everyone who uses 'passwd' would have the same hash</li>
+        </ul>
+      </li>
+    </ul>
+    <p>
+      Most common languages have a port of bcrypt. <a href="https://www.npmjs.com/package/bcrypt">NPM module for node.js</a>
+    </p>
+    <p><a href="https://www.npmjs.com/package/promise">Promise Library for Node if needed</a></p>
+    <p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
+    <p><a href="bcrypt1.html">Back</a></p>
+  </body>
+</html>

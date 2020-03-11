@@ -1,56 +1,77 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>BCRYPT WITH PROMISES IN NODE</title>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-        <link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous"
-/>
-        <style>
-.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
-</style>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BCRYPT WITH PROMISES IN NODE</title>
 
-        
-        
-    </head>
-    <body class="vscode-light">
-        <h2 id="bcrypt-with-promises-in-node">BCRYPT WITH PROMISES IN NODE</h2>
-<h3 id="disclaimer">Disclaimer</h3>
-<ul>
-<li>Crypto is hard</li>
-<li>I am not a crypto guy</li>
-<li>do your research before using any crypto algorithm</li>
-</ul>
-<h3 id="cryptographic-hashing--which-one">Cryptographic Hashing : Which One?</h3>
-<p><strong>NEVER STORE PASSWORDS IN PLAIN TEXT!</strong></p>
-<ul>
-<li>MD5?
-<ul>
-<li>NO</li>
-</ul>
-</li>
-<li>SHA-1?
-<ul>
-<li>NO</li>
-</ul>
-</li>
-<li>SHA-2?, SHA-3?
-<ul>
-<li>secure</li>
-<li>not best for passwords</li>
-<li>too fast!</li>
-<li><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">https://en.wikipedia.org/wiki/Secure_Hash_Algorithms</a></li>
-</ul>
-</li>
-</ul>
-<p><a href="/bcrypt2.html">This is where bcrypt comes in</a></p>
-<p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css"
+    />
 
-    </body>
-    </html>
+    <style>
+      .task-list-item {
+        list-style-type: none;
+      }
+      .task-list-item-checkbox {
+        margin-left: -20px;
+        vertical-align: middle;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      li {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body class="vscode-light">
+    <h2 id="bcrypt-with-promises-in-node">BCRYPT WITH PROMISES IN NODE</h2>
+    <h3 id="disclaimer">Disclaimer</h3>
+    <ul>
+      <li>Crypto is hard</li>
+      <li>I am not a crypto guy</li>
+      <li>do your research before using any crypto algorithm</li>
+    </ul>
+    <h3 id="cryptographic-hashing--which-one">Cryptographic Hashing : Which One?</h3>
+    <p><strong>NEVER STORE PASSWORDS IN PLAIN TEXT!</strong></p>
+    <ul>
+      <li>
+        MD5?
+        <ul>
+          <li>NO</li>
+        </ul>
+      </li>
+      <li>
+        SHA-1?
+        <ul>
+          <li>NO</li>
+        </ul>
+      </li>
+      <li>
+        SHA-2?, SHA-3?
+        <ul>
+          <li>secure</li>
+          <li>not best for passwords</li>
+          <li>too fast!</li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms"
+              >https://en.wikipedia.org/wiki/Secure_Hash_Algorithms</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p><a href="/bcrypt2.html">This is where bcrypt comes in</a></p>
+    <p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
+  </body>
+</html>
