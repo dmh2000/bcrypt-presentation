@@ -18,6 +18,8 @@ Bcrypt lets you tune how long it takes to generate the desired hash
 Most common languages have a port of bcrypt.
 <a href="https://www.npmjs.com/package/bcrypt">NPM module for node.js</a>
 
+<a href="https://www.npmjs.com/package/promise">Promise Library for Node if needed</a>
+
 <a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a>
 
 <a href="bcrypt1.html">Back</a>

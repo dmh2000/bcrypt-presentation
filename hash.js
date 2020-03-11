@@ -1,9 +1,10 @@
-let bcrypt = require("bcrypt");
+// the bcrypt library
+const bcrypt = require("bcrypt");
 
-// NOTE : with node >= 12.0, the bcrypt functions return a promise
-// if a callback is not specified. this example supports node < 12.0
+// this package provides the require Promise
+// defers to the native implementation if present
+// const promise = require("promise");
 
-// if node version < 12 (also include a Promise package)
 function genSalt(rounds) {
   return new Promise((resolve, reject) => {
     return bcrypt.genSalt(rounds, function(err, salt) {
@@ -110,6 +111,6 @@ const passwd_from_ui = "hello";
 // hash = lookupUser("joe")
 const hash_from_db = "$2b$10$lcXuO9M808f1X1OWqJJ7c.rAG4l1kwHohaPEZ6q0N5sNTDfV2VDfG";
 
-// f1(rounds)
+f1(rounds);
 // f2(passwd_from_ui, rounds)
 // f3(passwd_from_ui, hash_from_db);

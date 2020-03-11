@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/dmh2000/bcrypt-presentation#readme",
   "dependencies": {
-    "bcrypt": "^4.0.1"
+    "bcrypt": "^4.0.1",
+    "promise": "^8.1.0"
   }
 }
