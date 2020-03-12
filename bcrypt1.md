@@ -2,13 +2,26 @@
 
 ### Disclaimer
 
-- Crypto is hard
 - I am not a crypto guy
 - do your research before using any crypto algorithm
 
 ### Cryptographic Hashing : Which One?
 
-**NEVER STORE PASSWORDS IN PLAIN TEXT!**
+1. **CRYPTO IS HARD**
+2. **NEVER STORE PASSWORDS IN PLAIN TEXT!**
+3. **DON'T INVENT YOUR OWN CRYPTO**
+
+- Facebook
+  - 200 to 600 MILLION stored
+- Adobe
+  - encrypted but not secure
+- LinkedIn
+  - homegrown crypto hacked
+- Twitter
+  - saved to internal log after hashing
+- T-Mobile Austria
+
+### What Hash To Use?
 
 - MD5?
   - NO

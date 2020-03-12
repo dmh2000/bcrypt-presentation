@@ -1,57 +1,253 @@
 <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>BCRYPT WITH PROMISES IN NODE</title>
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
-        
-        <style>
-.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
-</style>
-        <style>
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 18px;
-                line-height: 1.6;
-            }
-        </style>
-        
-        
-    </head>
-    <body class="vscode-light">
-        <h2 id="bcrypt-with-promises-in-node">BCRYPT WITH PROMISES IN NODE</h2>
-<h3 id="disclaimer">Disclaimer</h3>
-<ul>
-<li>Crypto is hard</li>
-<li>I am not a crypto guy</li>
-<li>do your research before using any crypto algorithm</li>
-</ul>
-<h3 id="cryptographic-hashing--which-one">Cryptographic Hashing : Which One?</h3>
-<p><strong>NEVER STORE PASSWORDS IN PLAIN TEXT!</strong></p>
-<ul>
-<li>MD5?
-<ul>
-<li>NO</li>
-</ul>
-</li>
-<li>SHA-1?
-<ul>
-<li>NO</li>
-</ul>
-</li>
-<li>SHA-2?, SHA-3?
-<ul>
-<li>secure</li>
-<li>not best for passwords</li>
-<li>too fast!</li>
-<li><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms">https://en.wikipedia.org/wiki/Secure_Hash_Algorithms</a></li>
-</ul>
-</li>
-</ul>
-<p><a href="/bcrypt2.html">This is where bcrypt comes in</a></p>
-<p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>BCRYPT WITH PROMISES IN NODE</title>
 
-    </body>
-    </html>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css"
+    />
+
+    <style>
+      .task-list-item {
+        list-style-type: none;
+      }
+      .task-list-item-checkbox {
+        margin-left: -20px;
+        vertical-align: middle;
+      }
+    </style>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+        font-size: 18px;
+        line-height: 1;
+      }
+      li {
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body class="vscode-light">
+    <h2 id="bcrypt-with-promises-in-node">BCRYPT WITH PROMISES IN NODE</h2>
+    <h3 id="disclaimer">Disclaimer</h3>
+    <ul>
+      <li>I am not a crypto guy</li>
+      <li>do your research before using any crypto algorithm</li>
+    </ul>
+    <h3 id="cryptographic-hashing--which-one">Cryptographic Hashing : Which One?</h3>
+    <ol>
+      <li><strong>CRYPTO IS HARD</strong></li>
+      <li><strong>NEVER STORE PASSWORDS IN PLAIN TEXT!</strong></li>
+      <li><strong>DON'T INVENT YOUR OWN CRYPTO</strong></li>
+    </ol>
+    <ul>
+      <li>
+        Facebook
+        <ul>
+          <li>200 to 600 MILLION stored</li>
+        </ul>
+      </li>
+      <li>
+        Adobe
+        <ul>
+          <li>encrypted but not secure</li>
+        </ul>
+      </li>
+      <li>
+        LinkedIn
+        <ul>
+          <li>homegrown crypto hacked</li>
+        </ul>
+      </li>
+      <li>
+        Twitter
+        <ul>
+          <li>saved to internal log after hashing</li>
+        </ul>
+      </li>
+      <li>
+        T-Mobile Austria
+        <ul>
+          <li>thought it was helpful to customer service to verify password</li>
+        </ul>
+      </li>
+    </ul>
+    <h3 id="what-hash-to-use">What Hash To Use?</h3>
+    <ul>
+      <li>
+        MD5?
+        <ul>
+          <li>NO</li>
+        </ul>
+      </li>
+      <li>
+        SHA-1?
+        <ul>
+          <li>NO</li>
+        </ul>
+      </li>
+      <li>
+        SHA-2?, SHA-3?
+        <ul>
+          <li>secure</li>
+          <li>not best for passwords</li>
+          <li>too fast!</li>
+          <li>
+            <a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms"
+              >https://en.wikipedia.org/wiki/Secure_Hash_Algorithms</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>This is where bcrypt comes in</strong></p>
+    <p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
+    <h2 id="bcrypt">BCRYPT</h2>
+    <ul>
+      <li>bcrypt is a hashing function designed by Niels Provos and David Mazières in 1999</li>
+      <li>specifically intended for use in password hashing</li>
+      <li>its proven over 20 years of use</li>
+      <li>
+        uses <a href="https://en.wikipedia.org/wiki/Blowfish_(cipher)">Blowfish encryption</a> created by Bruce Schneier
+        <ul>
+          <li>hasn't been broken (yet)</li>
+        </ul>
+      </li>
+      <li><a href="https://en.wikipedia.org/wiki/Bcrypt">bcrypt in Wikipedia</a></li>
+    </ul>
+    <p>
+      <strong
+        >The main characteristic of bcrypt that makes it useful for password hashing is that it can be tuned to be slow</strong
+      >
+    </p>
+    <p><strong>Bcrypt lets you tune how long it takes to generate the desired hash</strong></p>
+    <ul>
+      <li>
+        bcrypt uses a salt to prevent rainbow table attacks
+        <ul>
+          <li>without a salt, everyone who uses 'passwd' would have the same hash</li>
+          <li>
+            salt is a 30 character random character string
+            <ul>
+              <li>prepended to hash before storing</li>
+              <li>first few bytes are a header indicating crypt used and number of rounds</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        tunable generation of the hash can be used to hamper brute force attacks
+        <ul>
+          <li>'rounds' argument indicates number of iterations of the hash algorithm</li>
+          <li>like adding a delay between login attempts</li>
+          <li>time to generate hash doubles for every increment of 'rounds'</li>
+          <li>'rounds' count can be increased as compute power grows over time</li>
+        </ul>
+      </li>
+      <li>
+        bcrypt API
+        <ul>
+          <li>generating cryptographic random numbers takes time</li>
+          <li>
+            synchronous
+            <ul>
+              <li>ok for batch processing</li>
+            </ul>
+          </li>
+          <li>
+            asynchronous
+            <ul>
+              <li>best for interactive</li>
+              <li>callbacks</li>
+              <li>Promises</li>
+              <li>Async/Await</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p><strong>Most common languages have a port of bcrypt.</strong></p>
+    <p><a href="https://www.npmjs.com/package/bcrypt">NPM module for node.js : https://www.npmjs.com/package/bcrypt</a></p>
+    <p>
+      <a href="https://www.npmjs.com/package/promise"
+        >Promise Library for Node if needed : https://www.npmjs.com/package/promise</a
+      >
+    </p>
+    <h3 id="examples">Examples</h3>
+    <p>In directory 'example' is a set of , well, examples</p>
+    <ul>
+      <li>
+        p1.js
+        <ul>
+          <li>generate salt with a callback</li>
+          <li>
+            Callback Hell
+            <ul>
+              <li>
+                assume new user dialog with validated username/password
+                <ol>
+                  <li>verify username is available (database)</li>
+                  <li>hash the password (bcrypt)</li>
+                  <li>store in database</li>
+                  <li>send response</li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        p2.js
+        <ul>
+          <li>generate salt with a Promise</li>
+        </ul>
+      </li>
+      <li>
+        p3.js
+        <ul>
+          <li>generate hash with Promise</li>
+          <li>precomputed salt</li>
+        </ul>
+      </li>
+      <li>
+        p4.js
+        <ul>
+          <li>generate salt and hash with Promise chain</li>
+        </ul>
+      </li>
+      <li>
+        p5.js
+        <ul>
+          <li>verify a password</li>
+          <li>precomputed hash to compare against</li>
+          <li>
+            note
+            <ul>
+              <li>one password can have many possible hashes</li>
+              <li>one hash can only resolve to one password (we hope)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        p6.js
+        <ul>
+          <li>like p4.js but with timing</li>
+        </ul>
+      </li>
+      <li>
+        p7.js
+        <ul>
+          <li>generate salt and hash with Async/Await</li>
+        </ul>
+      </li>
+    </ul>
+    <p><a href="https://github.com/dmh2000/bcrypt-presentation">github.com/dmh2000/bcrypt-presentation</a></p>
+  </body>
+</html>

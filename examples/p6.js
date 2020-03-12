@@ -10,7 +10,7 @@ const promise = require('promise');
 // ==========================================
 
 // get the user and password from the signin UI
-const uer = 'joe';
+const user = 'joe';
 const password = 'hello';
 const rounds = 14;
 
